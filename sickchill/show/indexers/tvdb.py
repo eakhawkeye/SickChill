@@ -31,6 +31,17 @@ class TVDB(Indexer):
         self.series_images = tvdbsimple.Series_Images
         self.updates = tvdbsimple.Updates
 
+    def _search_endpoint(self):
+        search = getattr(self._search, "__self__", None)
+        return search._get_complete_url(search._get_path("series")) if search else None
+
+    def _log_search_error(self, search_term, language, error):
+        request = getattr(error, "request", None)
+        request_url = getattr(request, "url", None)
+        request_details = f" Request URL: {request_url}" if request_url else f" Search endpoint: {self._search_endpoint()}"
+        logger.warning(f'theTVDB API search failed for "{search_term}" in language "{language}": {error}.{request_details}')
+        logger.debug(traceback.format_exc())
+
     @ExceptionDecorator()
     def series(self, *args, **kwargs):
         result = self._series(*args, **kwargs)
@@ -118,8 +129,8 @@ class TVDB(Indexer):
                     series = self._series(name, language=language)
                     if series:
                         result = [series.info(language)]
-            except (requests.exceptions.RequestException, requests.exceptions.HTTPError, Exception):
-                logger.debug(traceback.format_exc())
+            except Exception as error:
+                self._log_search_error(name, language, error)
         else:
             # Name as provided (usually from nfo)
             names = [name]
@@ -140,8 +151,8 @@ class TVDB(Indexer):
                     result = self._search(attempt, language=language)
                     if result:
                         break
-                except (requests.exceptions.RequestException, requests.exceptions.HTTPError, Exception):
-                    logger.debug(traceback.format_exc())
+                except Exception as error:
+                    self._log_search_error(attempt, language, error)
 
         return result
 
