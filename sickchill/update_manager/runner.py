@@ -6,8 +6,10 @@ import time
 
 from sickchill import logger, settings
 from sickchill.helper.exceptions import UpdaterException
+from sickchill.init_helpers import git_folder
 from sickchill.oldbeard import db, helpers, ui
 
+from .git import GitUpdateManager
 from .pip import PipUpdateManager
 
 
@@ -22,7 +24,7 @@ class UpdateManager(object):
         self.updater = None
 
         if not settings.DISABLE_UPDATER:
-            self.updater = PipUpdateManager()
+            self.updater = GitUpdateManager() if git_folder.is_dir() else PipUpdateManager()
 
         self.session = helpers.make_session()
 
@@ -209,7 +211,7 @@ class UpdateManager(object):
 
         # checking for updates
         if not settings.AUTO_UPDATE:
-            logger.info("Checking for updates from pip")
+            logger.info(f"Checking for updates using {self.updater.__class__.__name__}")
 
         if not self.need_update():
             if force:
@@ -273,7 +275,7 @@ class UpdateManager(object):
 
     def backup(self):
         if self.updater:
-            return self._run_backup
+            return self._run_backup()
 
     def get_newest_version(self):
         if self.updater:
