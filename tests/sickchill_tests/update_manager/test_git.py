@@ -10,7 +10,7 @@ from sickchill.update_manager.runner import UpdateManager
 @pytest.fixture()
 def updater(monkeypatch):
     monkeypatch.setattr(settings, "GIT_BRANCH", "master")
-    monkeypatch.setattr(settings, "GIT_REMOTE_URL", "https://github.com/eakhawkeye/SickChill.git")
+    monkeypatch.setattr(settings, "GIT_REMOTE_URL", "https://github.com/eakhawkeye/SickChilling.git")
     fixture = GitUpdateManager()
     fixture._git_path = "git"
     return fixture
@@ -38,6 +38,11 @@ def git_result(ahead="0", behind="3", branch="master", dirty=""):
 
 
 class TestGitUpdateManager:
+    def test_default_repository_configuration(self):
+        assert settings.GIT_ORG == "eakhawkeye"
+        assert settings.GIT_REPO == "SickChilling"
+        assert settings.GIT_REMOTE_URL == "https://github.com/eakhawkeye/SickChilling.git"
+
     def test_runner_selects_git_updater_for_checkout(self):
         assert isinstance(UpdateManager().updater, GitUpdateManager)
 
@@ -65,7 +70,7 @@ class TestGitUpdateManager:
             "fetch",
             "--no-tags",
             "--prune",
-            "https://github.com/eakhawkeye/SickChill.git",
+            "https://github.com/eakhawkeye/SickChilling.git",
             "+refs/heads/master:refs/remotes/sickchill-updater/master",
         )
 
