@@ -107,6 +107,7 @@ jobs:
         uses: 5yutan5/setup-poetry-env@v1.1.0
         with:
           python-version: ${{ matrix.python-version }}
+          poetry-version: 1.8.5
           python-cache-dependency-path: pyproject.toml
       - if: success() && startsWith(runner.os, 'Linux') && matrix.python-version == env.PYTHON_TEST_VERSION
         name: Set up Node
