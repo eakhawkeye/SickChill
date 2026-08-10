@@ -341,9 +341,9 @@ class AddShows(Home):
         error = None
 
         if self.get_body_argument("submit", None):
-            tvdb_user = self.get_body_argument("tvdb_user")
+            tvdb_user = self.get_body_argument("tvdb_user", "")
             tvdb_user_key = filters.unhide(settings.TVDB_USER_KEY, self.get_body_argument("tvdb_user_key"))
-            if tvdb_user and tvdb_user_key:
+            if tvdb_user_key:
                 if tvdb_user != settings.TVDB_USER or tvdb_user_key != settings.TVDB_USER_KEY:
                     favorites.test_user_key(tvdb_user, tvdb_user_key, 1)
 

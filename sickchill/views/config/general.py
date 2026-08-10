@@ -72,6 +72,7 @@ class ConfigGeneral(Config):
         showupdate_hour=3,
         web_username=None,
         api_key=None,
+        tvdb_api_key=None,
         indexer_default=None,
         timezone_display=None,
         cpu_preset="NORMAL",
@@ -196,6 +197,7 @@ class ConfigGeneral(Config):
         settings.TIMEZONE_DISPLAY = timezone_display
 
         settings.API_KEY = api_key
+        settings.TVDB_API_KEY = filters.unhide(settings.TVDB_API_KEY, tvdb_api_key)
 
         settings.ENABLE_HTTPS = config.checkbox_to_value(enable_https)
 

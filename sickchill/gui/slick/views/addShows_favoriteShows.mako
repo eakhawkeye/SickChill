@@ -46,13 +46,8 @@
                 <form name="set_tvdb_key" class="form form-inline" method="post" action="">
 
                     <div class="form-group">
-                        <label for="tvdb_user">${_('TVDB Username')}</label>
-                        <input class="form-control" title="${_('TVDB Username')}" name="tvdb_user"
-                               type="text" value="${settings.TVDB_USER or ''}" autocomplete="off" />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">${_('TVDB User Key')}</label>
-                        <input class="form-control" title="${_('TVDB User Key')}" name="tvdb_user_key"
+                        <label for="tvdb_user_key">${_('TVDB Subscriber PIN')}</label>
+                        <input class="form-control" title="${_('TVDB Subscriber PIN')}" id="tvdb_user_key" name="tvdb_user_key"
                                type="password" value="${settings.TVDB_USER_KEY|hide}" autocomplete="off" />
                     </div>
                     <div class="form-group">
@@ -67,13 +62,13 @@
                 <div id="container">
                     % if favorite_shows is None:
                         <div class="trakt_show" style="width:100%; margin-top:20px">
-                            <p class="red-text">${_('Fetching of Favorites Data failed. Have you set your user name and key correctly?')}
+                            <p class="red-text">${_('Fetching of Favorites Data failed. Have you set your subscriber PIN correctly?')}
                                 <strong>${_('Exception')}:</strong>
                             <p>${favorites_exception}</p>
                         </div>
                     % elif not favorite_shows:
                         <div class="trakt_show text-center" style="width:100%; margin-top:20px">
-                            ${_('No favorites found that are not already in your show list, or fetching failed. Make sure your username and user key are set correctly above if you feel this is an error')}
+                            ${_('No favorites found that are not already in your show list, or fetching failed. Make sure your subscriber PIN is set correctly above if you feel this is an error')}
                         </div>
                     % else:
                         % for cur_result in favorite_shows:

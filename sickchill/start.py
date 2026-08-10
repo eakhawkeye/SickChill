@@ -212,6 +212,7 @@ def initialize(console_logging: bool = True, debug: bool = False, dbdebug: bool 
         settings.INDEXER_DEFAULT_LANGUAGE = check_setting_str(settings.CFG, "General", "indexerDefaultLang", "en")
         settings.INDEXER_DEFAULT = check_setting_int(settings.CFG, "General", "indexer_default", min_val=1, max_val=2, def_val=1)
         settings.INDEXER_TIMEOUT = check_setting_int(settings.CFG, "General", "indexer_timeout", 20, min_val=0)
+        settings.TVDB_API_KEY = check_setting_str(settings.CFG, "General", "tvdb_api_key", settings.TVDB_API_KEY, censor_log=True)
 
         sickchill.indexer = sickchill.ShowIndexer()
 
@@ -1163,6 +1164,7 @@ def save_config():
                 "localhost_ip": settings.LOCALHOST_IP,
                 "cpu_preset": settings.CPU_PRESET,
                 "anon_redirect": settings.ANON_REDIRECT or "disabled",
+                "tvdb_api_key": settings.TVDB_API_KEY,
                 "tvdb_user": settings.TVDB_USER,
                 "tvdb_user_key": settings.TVDB_USER_KEY,
                 "api_key": settings.API_KEY,

@@ -1,3 +1,4 @@
+import os
 import random
 from threading import Lock
 from typing import TYPE_CHECKING
@@ -503,6 +504,7 @@ TRASH_REMOVE_SHOW = False
 TRASH_ROTATE_LOGS = False
 TRIM_ZERO = False
 TV_DOWNLOAD_DIR = None
+TVDB_API_KEY = os.environ.get("SICKCHILL_TVDB_API_KEY", "")
 TVDB_USER = None
 TVDB_USER_KEY = None
 TWILIO_ACCOUNT_SID = ""

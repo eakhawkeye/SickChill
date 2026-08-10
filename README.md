@@ -54,6 +54,8 @@ Issue/Bug tracking, feature requests, support, and developer communication is mo
 
 To run SickChill you will need Python 3.8+, preferably 3.11 or newer. PyPy (python 3.7-3.9) 7.8.x+ is also supported.
 
+TheTVDB metadata access uses API v4 and requires a project API key. Set it under General Configuration or with the `SICKCHILL_TVDB_API_KEY` environment variable. A TheTVDB subscriber PIN is additionally required for subscriber-supported keys and favorites.
+
 ### Important notes on switching from other forks
 
 Before using this with your existing database (`sickbeard.db`) please make a backup copy of it and delete any other database files such as cache.db and failed.db if present.

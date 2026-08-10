@@ -22,7 +22,7 @@ class ShowUpdater(object):
 
         self.amActive = True
         try:
-            logger.info("ShowUpdater for tvdb Api V3 starting")
+            logger.info("ShowUpdater for theTVDB API v4 starting")
 
             cache_db_con = db.DBConnection("cache.db")
             for index, provider in sickchill.indexer:
