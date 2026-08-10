@@ -3,6 +3,7 @@ Test snatching
 """
 
 import unittest
+from unittest import mock
 
 import sickchill.oldbeard.providers
 from sickchill import settings
@@ -73,26 +74,24 @@ class SearchTest(conftest.SickChillTestDBCase):
         _ = url, headers
         return _create_fake_xml(search_items)
 
-    @property
-    def _fake_is_active(self):
+    def setUp(self):
         """
-        Fake is active
-        """
-        return True
+        Set up tests
 
-    def __init__(self, something):
-        """
-        Initialize tests
-
-        :param something:
         :return:
         """
+        super().setUp()
 
-        for provider in sickchill.oldbeard.providers.sorted_provider_list():
-            provider.get_url = self._fake_get_url
-            provider.is_active = self._fake_is_active
+        providers = sickchill.oldbeard.providers.sorted_provider_list()
+        for provider in providers:
+            get_url_patcher = mock.patch.object(provider, "get_url", self._fake_get_url)
+            get_url_patcher.start()
+            self.addCleanup(get_url_patcher.stop)
 
-        super().__init__(something)
+        for provider_type in {type(provider) for provider in providers}:
+            is_active_patcher = mock.patch.object(provider_type, "is_active", new_callable=mock.PropertyMock, return_value=True)
+            is_active_patcher.start()
+            self.addCleanup(is_active_patcher.stop)
 
 
 def generator(tvdb_id, show_name, cur_data, force_search):
