@@ -3765,9 +3765,9 @@ color-support@^1.1.2, color-support@^1.1.3:
   integrity sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==
 
 colord@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/colord/-/colord-2.9.3.tgz#4f8ce919de456f1d5c1c368c307fe20f3e59fb43"
-  integrity sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/colord/-/colord-2.9.5.tgz#fe43625d8615b9a81d53280cc64afc435820bc6d"
+  integrity sha512-1N4FZkdj0BvP78UatS8VQHP+DnRy/rAyh+eelOONgZNsgatenTe+uApmVrdfknjqvsPdsBhq5tQpnIvClcNWZA==
 
 colorette@^2.0.10, colorette@^2.0.14:
   version "2.0.20"
@@ -9939,9 +9939,9 @@ sass-loader@^14.1.0:
     neo-async "^2.6.2"
 
 sass@^1.71.0:
-  version "1.102.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.102.0.tgz#4ed9378f37ca4186a76d6d1f52a6680c92b6bd80"
-  integrity sha512-NSOyTnaQF7rTAEOtI2fwb386vL+akyiQLBZu8Na7hXCb+umJy0GAqlcMIaqACZ6Z1VgTBS4K9PG6B3IdjHGJsw==
+  version "1.103.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.103.0.tgz#4495284099cffc41c8bb438f8a2bd3327db63e6d"
+  integrity sha512-+QpdXUDw19lVqRDlYIyje1Lq/0gHsnNHIl4x1CqeUg13zRhaQN11UvTvouwHWLXc9Q3rQVT6oBhFGRYJ5Z8gHw==
   dependencies:
     chokidar "^5.0.0"
     immutable "^5.1.5"
